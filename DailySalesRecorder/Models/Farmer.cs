@@ -1,8 +1,10 @@
-﻿namespace DailySalesRecorder.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DailySalesRecorder.Models
 {
     public class Farmer
     {
-        int FarmerId { get; set; }              // Note FarmerId is not not yet public
+        [Key] public int FarmerId { get; set; }
         public string FarmerName { get; set; }
         public string FarmerPlace { get; set; }
         public ulong MobileNo { get; set; }

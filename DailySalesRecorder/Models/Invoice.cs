@@ -1,8 +1,10 @@
-﻿namespace DailySalesRecorder.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DailySalesRecorder.Models
 {
     public class Invoice
     {
-        public int InvoiceID { get; set; }
+        [Key]public int InvoiceID { get; set; }
         public InvoiceType InvoiceType { get; set; }
         public DateTime Date { get; set; }
         public int FarmerId { get; set; }
