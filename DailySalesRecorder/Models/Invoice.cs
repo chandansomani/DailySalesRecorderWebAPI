@@ -4,10 +4,10 @@ namespace DailySalesRecorder.Models
 {
     public class Invoice
     {
-        [Key] public int InvoiceID { get; set; } = 0;
+        public int InvoiceID { get; set; } = 0;
         public InvoiceType InvoiceType { get; set; } = InvoiceType.SEED;
         public DateTime Date { get; set; } = DateTime.Now;
-        public Farmer FarmerId { get; set; }
+        public int FarmerId { get; set; } = 0;
         public decimal Amount { get; set; } = decimal.Zero;
         public decimal CreditAmt { get; set; } = decimal.Zero;
         public decimal CashAmt { get; set; } = decimal.Zero;

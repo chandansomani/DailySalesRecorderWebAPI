@@ -4,7 +4,7 @@ namespace DailySalesRecorder.Models
 {
     public class Farmer
     {
-        [Key] public int FarmerId { get; set; } = 0;
+        public int FarmerId { get; set; } = 0;
         public string FarmerName { get; set; } = string.Empty;
         public string FarmerPlace { get; set; } = string.Empty;
         public ulong MobileNo { get; set; } = 0;
