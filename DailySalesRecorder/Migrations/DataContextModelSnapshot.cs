@@ -63,11 +63,11 @@ namespace DailySalesRecorder.Migrations
 
             modelBuilder.Entity("DailySalesRecorder.Models.Invoice", b =>
                 {
-                    b.Property<int>("InvoiceID")
+                    b.Property<int>("InvoiceId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InvoiceID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InvoiceId"), 1L, 1);
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
@@ -87,10 +87,10 @@ namespace DailySalesRecorder.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FarmerId")
+                    b.Property<int>("InvoiceType")
                         .HasColumnType("int");
 
-                    b.Property<int>("InvoiceType")
+                    b.Property<int>("Invoice_Farmer_FK")
                         .HasColumnType("int");
 
                     b.Property<decimal>("UPIAmt")
@@ -102,9 +102,22 @@ namespace DailySalesRecorder.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("InvoiceID");
+                    b.HasKey("InvoiceId");
+
+                    b.HasIndex("Invoice_Farmer_FK");
 
                     b.ToTable("Invoices");
+                });
+
+            modelBuilder.Entity("DailySalesRecorder.Models.Invoice", b =>
+                {
+                    b.HasOne("DailySalesRecorder.Models.Farmer", "Farmer")
+                        .WithMany()
+                        .HasForeignKey("Invoice_Farmer_FK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Farmer");
                 });
 #pragma warning restore 612, 618
         }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DailySalesRecorder.Migrations
 {
-    public partial class mssql_migration_688 : Migration
+    public partial class mssql_migration_806 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,11 +33,11 @@ namespace DailySalesRecorder.Migrations
                 name: "Invoices",
                 columns: table => new
                 {
-                    InvoiceID = table.Column<int>(type: "int", nullable: false)
+                    InvoiceId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     InvoiceType = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FarmerId = table.Column<int>(type: "int", nullable: false),
+                    Invoice_Farmer_FK = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreditAmt = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CashAmt = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -49,17 +49,28 @@ namespace DailySalesRecorder.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Invoices", x => x.InvoiceID);
+                    table.PrimaryKey("PK_Invoices", x => x.InvoiceId);
+                    table.ForeignKey(
+                        name: "FK_Invoices_Farmers_Invoice_Farmer_FK",
+                        column: x => x.Invoice_Farmer_FK,
+                        principalTable: "Farmers",
+                        principalColumn: "FarmerId",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Invoices_Invoice_Farmer_FK",
+                table: "Invoices",
+                column: "Invoice_Farmer_FK");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Farmers");
+                name: "Invoices");
 
             migrationBuilder.DropTable(
-                name: "Invoices");
+                name: "Farmers");
         }
     }
 }
