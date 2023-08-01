@@ -6,11 +6,11 @@ namespace DailySalesRecorder.Data
 {
     public class DataContext : DbContext
     {
-        //DbContext _context;
+        DbContext _context;
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-
+            
             
         }
 

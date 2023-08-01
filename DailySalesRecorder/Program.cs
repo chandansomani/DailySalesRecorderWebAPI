@@ -1,5 +1,6 @@
 global using Microsoft.EntityFrameworkCore;
 using DailySalesRecorder.Data;
+using DailySalesRecorder.Services.FarmerService;
 
 namespace DailySalesRecorder
 {
@@ -19,6 +20,8 @@ namespace DailySalesRecorder
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<IFarmerService, FarmerService>();
+
 
             var app = builder.Build();
 
