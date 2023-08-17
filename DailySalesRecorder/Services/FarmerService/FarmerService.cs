@@ -32,8 +32,12 @@ namespace DailySalesRecorder.Services.FarmerService
         {
             var result = new Farmer();
             result = await  _dataContext.Farmers.FindAsync(id);
-
-            return result;
+            if (result == null)
+            {
+                return new Farmer();
+            }
+            else
+                return result;
         }
 
         public List<Farmer> ViewAll()
